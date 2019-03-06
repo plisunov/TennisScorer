@@ -1,0 +1,84 @@
+body
+{
+    background: url("../../resources/pics/main.jpg") fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+.yellowcard
+{
+    background: url("../../resources/pics/yellow.jpg") fixed;
+    background-size: cover;
+    padding: 0;
+    margin: auto;
+    height: 50px;
+    width: 30px;
+    
+}
+
+.redcard
+{
+    background: url("../../resources/pics/reg.jpg") fixed;
+    background-size: cover;
+    padding: 0;
+    margin: auto;
+    height: 50px;
+    width: 30px;
+    
+}
+
+
+.containers {
+	margin-top:  80px;
+}
+.gamerName{
+	font-size: 29px;
+    width: 34%;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.timeoutInfo{
+ 	font-size: 24px;
+ 	width: 45%;
+ 	text-align:  center;
+}
+
+.scoreName{
+ 	width: 45%;
+ 	text-align:  center;
+ 	color: red;
+ 	font-size: 48px;
+}
+
+.infoString{
+ 	width: 100%;
+ 	text-align:  center;
+ 	font-size: 14px;
+}
+
+.pauseString{
+ 	width: 100%;
+ 	text-align:  center;
+ 	font-size: 18px;
+ 	color:red;
+}
+
+.totalScore{
+ 	width: 100%;
+ 	text-align:  center;
+ 	color: blue;
+ 	font-size: 40px;
+}
+
+table {
+    margin:  auto;
+}
+
+td{
+    border: 1px solid blue;
+    text-align: center;
+    width: 5%;
+    font-size: 30px;
+}

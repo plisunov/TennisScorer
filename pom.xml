@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>by.plisunov.tennis</groupId>
-	<version>3.1</version>
+	<groupId>by.plisunov.scoreboard</groupId>
+	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>TennisScorer</name>
+	<name>ScoreBoard</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

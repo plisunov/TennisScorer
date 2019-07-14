@@ -14,7 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
-import by.plisunov.tennis.controller.WebController;
+import by.plisunov.scoreboard.controller.WebController;
 
 @Component
 public class MyAccessDeniedHandler implements AccessDeniedHandler {

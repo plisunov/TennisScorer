@@ -2,7 +2,7 @@
 
 var updateContent = function() {
 	$.ajax({
-		url : "api/showallgames?withScheduled",
+		url : "hockey/api/showallgames?withScheduled",
 		type : "GET",
 		complete : function(data) {
 			if (data.status >= 200 && data.status < 300) {
@@ -30,52 +30,51 @@ var updateMatches = function(gamesArray){
 			}
 			builderHTML +=">";
 		}
-		builderHTML +=	
-		"<div class=\"panel panel-default\">"+
-			"<div class=\"panel-heading\"></div>"+
-			"<div class=\"panel-body\">"+
-				"<label class=\"gamerName\">"+gamesArray[i].player1.name+"</label> ";
-		if (gamesArray[i].player1Yellow){
-			builderHTML +="<label class=\"yellowcard\"/>";
-		} else if (gamesArray[i].player1Red){
-			builderHTML +="<label class=\"redcard\"/>";
-		}
-		builderHTML +="<label class=\"gamerName\">"+gamesArray[i].player2.name+"</label>";
-		if (gamesArray[i].player2Yellow){
-			builderHTML +="<label class=\"yellowcard\"/>";
-		} else if (gamesArray[i].player2Red){
-			builderHTML +="<label class=\"redcard\"/>";
-		}
-		builderHTML +="<br/>";
-		if (gamesArray[i].timeoutPlayer1){
-			builderHTML +="<label class=\"timeoutInfo\">Таймаут</label> " +
-			"<label class=\"timeoutInfo\"></label>"+
-			"<br/>";	
-		} else if (gamesArray[i].timeoutPlayer2){
-			builderHTML +="<label class=\"timeoutInfo\"></label> " +
-			"<label class=\"timeoutInfo\">Таймаут</label>"+
-			"<br/>";
-		} else {
-			builderHTML +="<label class=\"timeoutInfo\"></label> " +
-			"<label class=\"timeoutInfo\"></label>"+
-			"<br/>";
-		}
-        if (gamesArray[i].status != "SCHEDULED") {
-            builderHTML += "<label class=\"infoString\"> Сет " + gamesArray[i].currentSet + " из " + gamesArray[i].frameCount + "</label>" +
-                "<br />" +
-                "<label class=\"scoreName\">" + gamesArray[i].sets[gamesArray[i].currentSet - 1].score1 + "</label>" +
-                "<label class=\"scoreName\">" + gamesArray[i].sets[gamesArray[i].currentSet - 1].score2 + "</label>" +
-                "<br/>";
-            if (gamesArray[i].brakePlayer1 > 0) {
-                builderHTML += "<label class=\"timeoutInfo\">" + gamesArray[i].brakePlayer1 + "</label> " +
-                    "<label class=\"timeoutInfo\"></label>" +
-                    "<br/>";
-            } else if (gamesArray[i].brakePlayer2 > 0) {
-                builderHTML += "<label class=\"timeoutInfo\"></label> " +
-                    "<label class=\"timeoutInfo\">" + gamesArray[i].brakePlayer2 + "</label>" +
-                    "<br/>";
-            }
+
+        builderHTML +=
+            "<table>"
+            + "<tbody>"
+            + "<tr>"
+            + "<td class=\"td1\"></td>"
+            + "<td class=\"td2\">Команда</td>"
+            + "<td class=\"td3\">Счет</td>"
+            + "<td class=\"td4\">1 тайм</td>"
+            + "<td class=\"td5\">2 тайм</td>"
+            + "<td class=\"td6\">3 тайм</td>"
+            + "<td class=\"td7\">Буллиты</td>"
+            + "<td class=\"td8\">Статус</td>"
+            + "</tr>"
+            + "<tr>"
+            + "<td class=\"td1\">" + gamesArray[i].period + " период</td>"
+            + "<td class=\"td2\">" + gamesArray[i].teamPlayer1.name + "</td>"
+            + "<td class=\"td3\">" + gamesArray[i].team1Score + "</td>"
+            + "<td class=\"td4\">" + gamesArray[i].periods[0].score1 + "</td>"
+            + "<td class=\"td5\">" + gamesArray[i].periods[1].score1 + "</td>"
+            + "<td class=\"td6\">" + gamesArray[i].periods[2].score1 + "</td>"
+            + "<td class=\"td7\">" + gamesArray[i].fineScore1 + "</td>";
+        if (gamesArray[i].team1Fine) {
+            builderHTML += "<td class=\"td8\">Буллит</td>";
+        } else {
+            builderHTML += "<td class=\"td8\"></td>";
         }
+        builderHTML +=
+            "</tr>"
+            + "<tr>"
+            + "<td class=\"td1\">" + gamesArray[i].elapsedMinutes + ":" + gamesArray[i].elapsedSeconds + "</td>"
+            + "<td class=\"td2\">" + gamesArray[i].teamPlayer2.name + "</td>"
+            + "<td class=\"td3\">" + gamesArray[i].team2Score + "</td>"
+            + "<td class=\"td4\">" + gamesArray[i].periods[0].score2 + "</td>"
+            + "<td class=\"td5\">" + gamesArray[i].periods[1].score2 + "</td>"
+            + "<td class=\"td6\">" + gamesArray[i].periods[2].score2 + "</td>"
+            + "<td class=\"td7\">" + gamesArray[i].fineScore2 + "</td>";
+        if (gamesArray[i].team2Fine) {
+            builderHTML += "<td class=\"td8\">Буллит</td>";
+        } else {
+            builderHTML += "<td class=\"td8\"></td>";
+        }
+        builderHTML += "</tr>"
+            + "</tbody>"
+            + "</table>";
 		if (gamesArray[i].status==="PAUSED"){
 			builderHTML +="<label class=\"pauseString\">Игра приостановлена</label>";
 		}
@@ -84,23 +83,6 @@ var updateMatches = function(gamesArray){
 		}
         if (gamesArray[i].status==="SCHEDULED"){
             builderHTML +="<label class=\"pauseString\">Игра не началась. Запланировано  " + gamesArray[i].matchTime + "</label>";
-        }
-        if (gamesArray[i].status != "SCHEDULED") {
-            builderHTML += "<label class=\"infoString\">Общий счет в матче</label>" +
-                "<br/>" +
-                "<label class=\"totalScore\">" + gamesArray[i].player1Score + ":" + gamesArray[i].player2Score + "</label>" +
-                "<table>" +
-                "<tr>";
-            for (k = 0; k < gamesArray[i].frameCount; k++) {
-                builderHTML += "<td>" + gamesArray[i].sets[k].score1 + "</td>";
-            }
-            builderHTML += "</tr>" +
-                "<tr>";
-            for (k = 0; k < gamesArray[i].frameCount; k++) {
-                builderHTML += "<td>" + gamesArray[i].sets[k].score2 + "</td>";
-            }
-            builderHTML += "</tr>" +
-                "</table>";
         }
         builderHTML +="</div>"+
 		"</div>"+

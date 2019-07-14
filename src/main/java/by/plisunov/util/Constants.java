@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 
 import static by.plisunov.util.Constants.FOOTBAL_ACTION.*;
 import static by.plisunov.util.Constants.GAME_ACTION.*;
+import static by.plisunov.util.Constants.HOCKEY_ACTION.*;
 
 public class Constants {
+
+    //TODO remove all unused. COllect actions to single enum with custom sets.
 
     public static final String MATCH_ID = "match_id";
 
@@ -57,7 +60,7 @@ public class Constants {
 
 
     public enum GameStatus {
-        ACTIVE, FINISH, POSSIBLE_FINISH, PAUSED, SCHEDULED
+        ACTIVE, PAUSED, FINISH, POSSIBLE_FINISH, SCHEDULED
     }
 
     public enum SCORE_CHANGE_TYPE {
@@ -85,5 +88,18 @@ public class Constants {
         return Arrays.asList(F_TEAM1_GOAL, F_TEAM2_GOAL, F_TEAM1_RED, F_TEAM2_RED).stream().collect(Collectors.toSet());
     }
 
-    public enum POST_DETAIL_INFO {PLAYER1_POINT, PLAYER2_POINT, PLAYER1_UNPOINT, PLAYER2_UNPOINT, NOTHING_CHANGES}
+
+
+    public enum POST_DETAIL_INFO {PLAYER1_POINT, PLAYER2_POINT, PLAYER1_UNPOINT, PLAYER2_UNPOINT, NOTHING_CHANGES;}
+
+    public enum HOCKEY_ACTION {
+        H_BEGIN, H_STARTED, H_PAUSED, H_RESUMED, H_FINISHED, H_TEAM1_GOAL, H_TEAM2_GOAL, H_TEAM1_YELLOW, H_TEAM1_RED, H_TEAM2_YELLOW, H_TEAM2_RED, H_REVERS, H_TEAM1_FINE, H_TEAM2_FINE
+    }
+
+    public static Set<HOCKEY_ACTION> collectedHockeylAction = initCollectedHockeyAction();
+
+    private static Set<HOCKEY_ACTION> initCollectedHockeyAction() {
+        return Arrays.asList(H_TEAM1_GOAL, H_TEAM2_GOAL, H_TEAM1_RED, H_TEAM2_RED).stream().collect(Collectors.toSet());
+    }
+
 }

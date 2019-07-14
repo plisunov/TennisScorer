@@ -28,7 +28,7 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-				<b class="navbar-brand">Tennis live scorring</b>
+				<b class="navbar-brand">Score Board v1.0</b>
 				<ul class="nav navbar-nav navbar-right">
 					<sec:authorize access="isAuthenticated()">
 						<li><a href="#" /><span class="glyphicon glyphicon-user"></span>
@@ -48,7 +48,7 @@
 
 	<script type='text/javascript'>
 		$(document).ready(function() {
-			setInterval(updateContent, 1000);
+            setInterval(updateContent, 1000);
 		});
 	</script>
 </body>
